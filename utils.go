@@ -33,7 +33,7 @@ func cleanUpProcessGroup(cmd *exec.Cmd) {
 
 	process := cmd.Process
 	if process != nil && process.Pid > 0 {
-		syscall.Kill(-process.Pid, syscall.SIGTERM)
+		process.Signal(syscall.SIGTERM)
 	}
 
 	go cmd.Wait()
